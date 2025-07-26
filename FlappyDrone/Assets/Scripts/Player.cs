@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     {
         if (droneIsAlive)
         {
-            rigidBody2D.velocity = Vector2.up * flapPower * Time.deltaTime;
+            rigidBody2D.velocity = Vector2.up * flapPower;
             Debug.Log("Прыжок!");
         }
     }

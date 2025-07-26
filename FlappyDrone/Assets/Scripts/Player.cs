@@ -1,18 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Variables
+    [SerializeField] private float flapPower = 6f;
+    private bool droneIsAlive = true;
+
+    // References
+    private Rigidbody2D rigidBody2D;
+    private GameInput gameInput;
+
     void Start()
     {
-        
+        // Getting references
+        rigidBody2D = GetComponent<Rigidbody2D>();
+        gameInput = FindObjectOfType<GameInput>();
+
+        // Becoming an OnFlap listener
+        if (gameInput != null)
+        {
+            gameInput.OnFlap.AddListener(Jump);
+            Debug.Log("Подписан!");
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Jump()
     {
-        
+        if (droneIsAlive)
+        {
+            rigidBody2D.velocity = Vector2.up * flapPower * Time.deltaTime;
+            Debug.Log("Прыжок!");
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //logicManager.GameOver();
+        droneIsAlive = false;
+        if (gameInput != null)
+        {
+            gameInput.OnFlap.RemoveListener(Jump);
+        }
     }
 }

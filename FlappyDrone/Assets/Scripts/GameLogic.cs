@@ -11,7 +11,7 @@ public class GameLogic : MonoBehaviour {
 
     // References
     public Text scoreText;
-    public GameObject gameOverScreen;
+    // public GameObject gameOverScreen;
 
     public void AddScore(int scoreToAdd)
     {
@@ -26,6 +26,6 @@ public class GameLogic : MonoBehaviour {
 
     public void GameOver()
     {
-        gameOverScreen.SetActive(true);
+        // gameOverScreen.SetActive(true);
     }
 }

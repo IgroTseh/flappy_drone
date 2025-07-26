@@ -319,6 +319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3040245807369105739}
   - component: {fileID: 2468540045247829798}
+  - component: {fileID: 7745786125305048525}
   m_Layer: 7
   m_Name: Middle Trigger
   m_TagString: Untagged
@@ -386,3 +387,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.26, y: 1.68}
   m_EdgeRadius: 0
+--- !u!114 &7745786125305048525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376565123276929810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e924fac222046d45a39ae8906cff3de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameLogic: {fileID: 0}

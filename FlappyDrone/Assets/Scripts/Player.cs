@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Windows;
 
 public class Player : MonoBehaviour
@@ -12,6 +13,9 @@ public class Player : MonoBehaviour
     // References
     private Rigidbody2D rigidBody2D;
     private GameInput gameInput;
+
+    // Events
+    public UnityEvent OnDroneBrake;
 
     void Start()
     {
@@ -38,12 +42,14 @@ public class Player : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //logicManager.GameOver();
+    {;
         droneIsAlive = false;
+
         if (gameInput != null)
         {
             gameInput.OnFlap.RemoveListener(Jump);
         }
+
+        OnDroneBrake?.Invoke();
     }
 }

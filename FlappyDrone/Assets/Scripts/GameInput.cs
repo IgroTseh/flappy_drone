@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class GameInput : MonoBehaviour
 {
-    // Triggering events
+    // Events
     public UnityEvent OnFlap;
     
     void Start()

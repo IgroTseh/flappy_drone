@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Diagnostics;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GameLogic : MonoBehaviour {
     // Variables
@@ -11,7 +12,24 @@ public class GameLogic : MonoBehaviour {
 
     // References
     public Text scoreText;
-    // public GameObject gameOverScreen;
+    public GameObject gameOverScreen;
+    public Player player;
+
+
+    private void Start()
+    {
+        // Disabling GameOver screen
+        gameOverScreen.SetActive(false);
+
+
+        // Game Over trigger logic
+        player = FindObjectOfType<Player>();
+        if (player != null)
+        {
+            player.OnDroneBrake.AddListener(GameOver);
+            Debug.Log("Подписан!");
+        }
+    }
 
     public void AddScore(int scoreToAdd)
     {
@@ -26,6 +44,10 @@ public class GameLogic : MonoBehaviour {
 
     public void GameOver()
     {
-        // gameOverScreen.SetActive(true);
+        gameOverScreen.SetActive(true);
+        if (player != null)
+        {
+            player.OnDroneBrake.RemoveListener(GameOver);
+        }
     }
 }

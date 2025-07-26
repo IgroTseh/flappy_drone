@@ -11,10 +11,7 @@ public class Spawner : MonoBehaviour {
     [SerializeField] private float heightOfffset = 15f;
     [SerializeField] private float spawnRate = 0f;
     private float timer = 2f;
-    void Start()
-    {
-        spawnRate = timer;
-    }
+
 
     void Update()
     {

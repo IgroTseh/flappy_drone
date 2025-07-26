@@ -27,7 +27,6 @@ public class GameLogic : MonoBehaviour {
         if (player != null)
         {
             player.OnDroneBrake.AddListener(GameOver);
-            Debug.Log("Подписан!");
         }
     }
 

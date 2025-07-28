@@ -15,6 +15,7 @@ public class GameLogic : MonoBehaviour {
     public GameObject gameOverScreen;
     public Player player;
     public GameObject flapButton;
+    public GameObject pauseButton;
 
 
     private void Start()
@@ -29,6 +30,9 @@ public class GameLogic : MonoBehaviour {
         {
             player.OnDroneBrake.AddListener(GameOver);
         }
+
+        // Pause
+        GamePause();
     }
 
     public void AddScore(int scoreToAdd)
@@ -51,5 +55,23 @@ public class GameLogic : MonoBehaviour {
             player.OnDroneBrake.RemoveListener(GameOver);
         }
 
+    }
+
+    public void GamePause()
+    {
+        
+        
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            pauseButton.SetActive(false);
+            flapButton.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 0;
+            pauseButton.SetActive(true);
+            flapButton.SetActive(false);
+        }    
     }
 }

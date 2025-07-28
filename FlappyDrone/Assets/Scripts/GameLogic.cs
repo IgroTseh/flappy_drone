@@ -14,6 +14,7 @@ public class GameLogic : MonoBehaviour {
     public Text scoreText;
     public GameObject gameOverScreen;
     public Player player;
+    public GameObject flapButton;
 
 
     private void Start()
@@ -44,9 +45,11 @@ public class GameLogic : MonoBehaviour {
     public void GameOver()
     {
         gameOverScreen.SetActive(true);
+        flapButton.SetActive(false);
         if (player != null)
         {
             player.OnDroneBrake.RemoveListener(GameOver);
         }
+
     }
 }

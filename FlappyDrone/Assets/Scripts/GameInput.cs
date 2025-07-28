@@ -7,18 +7,10 @@ public class GameInput : MonoBehaviour
 {
     // Events
     public UnityEvent OnFlap;
-    
-    void Start()
-    {
-        
-    }
 
     
-    void Update()
+    public void TriggerFlap()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
             OnFlap?.Invoke();
-        }
     }
 }

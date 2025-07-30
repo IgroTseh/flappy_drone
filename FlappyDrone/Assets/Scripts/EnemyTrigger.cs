@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PipeMiddleScript : MonoBehaviour {
+public class EnemyTrigger : MonoBehaviour
+{
     // References
-    public GameLogic gameLogic;
+    private Player player;
 
     void Start()
     {
-        gameLogic = FindObjectOfType<GameLogic>();
+        player = FindObjectOfType<Player>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-            gameLogic.AddScore(1);
+        player.ThrowGrenade();
     }
 }

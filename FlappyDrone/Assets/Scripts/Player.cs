@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {;
+    {
         droneIsAlive = false;
 
         if (gameInput != null)
@@ -51,5 +51,10 @@ public class Player : MonoBehaviour
         }
 
         OnDroneBrake?.Invoke();
+    }
+
+    public void ThrowGrenade()
+    {
+        Debug.Log("Хавай лимончик!");
     }
 }

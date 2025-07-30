@@ -954,7 +954,7 @@ Transform:
   m_GameObject: {fileID: 820421000}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.95, y: 0, z: 0}
+  m_LocalPosition: {x: -2.5, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1407,7 +1407,7 @@ GameObject:
   - component: {fileID: 1606246151}
   - component: {fileID: 1606246150}
   m_Layer: 0
-  m_Name: Tube Spawner
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1426,8 +1426,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spwnObj: {fileID: 6853877134836690234, guid: aa00b44bf9b1b354d9bbb6fa051f2487, type: 3}
+  enemy: {fileID: 512442440489192363, guid: 5c4dd026db56cf64eb960c594ae254c3, type: 3}
   heightOfffset: 3
   spawnRate: 3
+  enemySpawnY: -4
 --- !u!4 &1606246151
 Transform:
   m_ObjectHideFlags: 0

@@ -14,7 +14,8 @@ public class Spawner : MonoBehaviour {
     [SerializeField] private float spawnRate = 0f;
     [SerializeField] private float enemySpawnY = -5f;
     [SerializeField] private float enemySpawnXoffset = 5f;
-    private float timer = 2f;
+    [SerializeField] private float spwnProbability = 0.3f;
+    [SerializeField] private float timer = 2f;
 
 
     void Update()
@@ -48,10 +49,9 @@ public class Spawner : MonoBehaviour {
         Vector3 enemySpwnPos = new Vector3(enemySpawnX , enemySpawnY, 0f);
         float probability = Random.Range(0f, 1f);
 
-        if (probability < 0.2f)
+        if (probability < spwnProbability)
         {
             Instantiate(enemy, enemySpwnPos, transform.rotation);
         }
-        Debug.Log(probability);
     }
 }

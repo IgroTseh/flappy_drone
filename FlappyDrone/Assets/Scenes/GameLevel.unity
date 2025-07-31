@@ -400,7 +400,7 @@ Transform:
   m_GameObject: {fileID: 453681073}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6, z: 0}
+  m_LocalPosition: {x: 0, y: -5.91, z: 0}
   m_LocalScale: {x: 7.07, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1430,6 +1430,7 @@ MonoBehaviour:
   heightOfffset: 3
   spawnRate: 3
   enemySpawnY: -4
+  enemySpawnXoffset: 7.5
 --- !u!4 &1606246151
 Transform:
   m_ObjectHideFlags: 0
@@ -1656,7 +1657,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1928366483}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Borders
   m_TagString: Untagged
   m_Icon: {fileID: 0}

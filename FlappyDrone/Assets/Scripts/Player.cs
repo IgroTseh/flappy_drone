@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     // References
     private Rigidbody2D rigidBody2D;
     private GameInput gameInput;
+    [SerializeField] GameObject grenade;
 
     // Events
     public UnityEvent OnDroneBrake;
@@ -53,6 +54,7 @@ public class Player : MonoBehaviour
 
     public void ThrowGrenade()
     {
-        Debug.Log("Хавай лимончик!");
+        Vector3 grndSpwnPos = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
+        Instantiate(grenade, grndSpwnPos, transform.rotation);
     }
 }

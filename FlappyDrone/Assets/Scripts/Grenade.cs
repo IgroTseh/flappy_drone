@@ -17,7 +17,7 @@ public class Grenade : MonoBehaviour {
     void Update()
     {
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-        if (transform.position.x < deadZone)
+        if (transform.position.y < deadZone)
         {
             Destroy(gameObject);
         }

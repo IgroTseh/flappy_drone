@@ -13,9 +13,9 @@ public class Spawner : MonoBehaviour {
     [SerializeField] private float heightOfffset = 15f;
     [SerializeField] private float spawnRate = 0f;
     [SerializeField] private float enemySpawnY = -5f;
+    [SerializeField] private float enemySpawnXoffset = 5f;
     private float timer = 2f;
-    private float enemyTimer = 2f;
-    private bool tubeIsSpawned;
+
 
     void Update()
     {
@@ -23,28 +23,14 @@ public class Spawner : MonoBehaviour {
         if (timer < spawnRate)
         {
             timer += Time.deltaTime;
-            tubeIsSpawned = false;
         }
         else
         {
             SpawnTube();
+            SpawnEnemy();
             timer = 0;
-            tubeIsSpawned = true;
         }
 
-        // Spawning enemys
-        if (enemyTimer < spawnRate * 2.5f)
-        {
-            enemyTimer += Time.deltaTime;
-        }
-        else
-        {
-            if (!tubeIsSpawned)
-            {
-                SpawnEnemy();
-            }
-            enemyTimer = 0;
-        }
     }
 
     private void SpawnTube()
@@ -58,7 +44,14 @@ public class Spawner : MonoBehaviour {
 
     private void SpawnEnemy()
     {
-        Vector3 enemySpwnPos = new Vector3(transform.position.x, enemySpawnY, 0f);
-        Instantiate(enemy, enemySpwnPos, transform.rotation);
+        float enemySpawnX = transform.position.x + enemySpawnXoffset;
+        Vector3 enemySpwnPos = new Vector3(enemySpawnX , enemySpawnY, 0f);
+        float probability = Random.Range(0f, 1f);
+
+        if (probability < 0.2f)
+        {
+            Instantiate(enemy, enemySpwnPos, transform.rotation);
+        }
+        Debug.Log(probability);
     }
 }

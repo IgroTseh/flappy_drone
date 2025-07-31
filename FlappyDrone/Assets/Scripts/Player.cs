@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
         if (gameInput != null)
         {
             gameInput.OnFlap.AddListener(Jump);
-            Debug.Log("Подписан!");
         }
 
     }
@@ -37,7 +36,6 @@ public class Player : MonoBehaviour
         if (droneIsAlive)
         {
             rigidBody2D.velocity = Vector2.up * flapPower;
-            Debug.Log("Прыжок!");
         }
     }
 

@@ -607,6 +607,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earth Tile
       objectReference: {fileID: 0}
+    - target: {fileID: 6372642753442802934, guid: 3ddb6494592a32a488f9fba3931ffeb2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171015279950869900, guid: 3ddb6494592a32a488f9fba3931ffeb2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -954,7 +962,7 @@ Transform:
   m_GameObject: {fileID: 820421000}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 0, z: 0}
+  m_LocalPosition: {x: -2.042, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1035,6 +1043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flapPower: 5
+  grenade: {fileID: 3876560414178586738, guid: d27096a9859caa045986b547a041f770, type: 3}
   OnDroneBrake:
     m_PersistentCalls:
       m_Calls: []
@@ -1430,7 +1439,9 @@ MonoBehaviour:
   heightOfffset: 3
   spawnRate: 3
   enemySpawnY: -4
-  enemySpawnXoffset: 7.5
+  enemySpawnXoffset: 1.5
+  spwnProbability: 0.3
+  timer: 2
 --- !u!4 &1606246151
 Transform:
   m_ObjectHideFlags: 0
@@ -1642,6 +1653,14 @@ PrefabInstance:
     - target: {fileID: 6372642753442802934, guid: 3ddb6494592a32a488f9fba3931ffeb2, type: 3}
       propertyPath: m_Name
       value: Earth Tile (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372642753442802934, guid: 3ddb6494592a32a488f9fba3931ffeb2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171015279950869900, guid: 3ddb6494592a32a488f9fba3931ffeb2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

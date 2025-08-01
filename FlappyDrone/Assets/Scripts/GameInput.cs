@@ -8,7 +8,14 @@ public class GameInput : MonoBehaviour
     // Events
     public UnityEvent OnFlap;
 
-    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TriggerFlap();
+        }
+    }
+
     public void TriggerFlap()
     {
             OnFlap?.Invoke();

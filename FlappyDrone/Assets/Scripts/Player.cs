@@ -54,7 +54,10 @@ public class Player : MonoBehaviour
 
     public void ThrowGrenade()
     {
-        Vector3 grndSpwnPos = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
-        Instantiate(grenade, grndSpwnPos, transform.rotation);
-    }
+        if (droneIsAlive)
+        {
+            Vector3 grndSpwnPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            Instantiate(grenade, grndSpwnPos, transform.rotation);
+        }
+     }
 }

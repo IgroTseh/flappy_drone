@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tubes : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    // Variables
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float deadZone = -20f;
+    // Start is called before the first frame update
+    [SerializeField] private float moveSpeed = 1;
+    [SerializeField] private float deadZone = -5f;
 
     void Update()
     {
@@ -16,5 +16,10 @@ public class Tubes : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
     }
 }

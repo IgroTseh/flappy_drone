@@ -13,13 +13,26 @@ public class Enemy : MonoBehaviour
         transform.position = transform.position + (Vector3.left * moveSpeed) * Time.deltaTime;
 
         if (transform.position.x < deadZone)
-        {
+        {           
             Destroy(gameObject);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        PlaySoundEffect("Hitmarker");
         Destroy(gameObject);
+    }
+
+    public void PlaySoundEffect(string soundName)
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound(soundName);
+        }
+        else
+        {
+            Debug.LogWarning("SoundManager не найден. Ќе удалось воспроизвести звук: " + soundName);
+        }
     }
 }

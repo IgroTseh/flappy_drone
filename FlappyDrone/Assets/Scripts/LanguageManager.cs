@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,18 +21,35 @@ public class LanguageManager : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
             InitializeDictionaries();
 
-            // Загружаем сохраненный язык, если есть
+            // Загружаем сохраненный язык
             if (PlayerPrefs.HasKey("CurrentLanguage"))
             {
                 currentLanguage = (Language)PlayerPrefs.GetInt("CurrentLanguage");
             }
 
+            // Подписываемся на событие загрузки сцены
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
+            // Первоначальное обновление текстов
             UpdateAllTextsOnScene();
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    void OnDestroy()
+    {
+        // Отписываемся от события при уничтожении объекта
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    // Обработчик события загрузки сцены
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Обновляем все тексты при загрузке любой сцены
+        UpdateAllTextsOnScene();
     }
 
     void InitializeDictionaries()
@@ -94,7 +112,6 @@ public class LanguageManager : MonoBehaviour {
         chineseDict = zhTexts.ToDictionary(pair => pair.Key, pair => pair.Value);
     }
 
-    // Простая функция для переключения языка по кругу
     public void SwitchLanguage()
     {
         int currentLangIndex = (int)currentLanguage;
@@ -105,8 +122,8 @@ public class LanguageManager : MonoBehaviour {
         PlayerPrefs.SetInt("CurrentLanguage", (int)currentLanguage);
         PlayerPrefs.Save();
 
-        // Обновляем все тексты
-        UpdateAllTextsOnScene();
+        // Используем ForceUpdateTexts вместо UpdateAllTextsOnScene
+        ForceUpdateTexts();
 
         Debug.Log($"Язык изменен на: {currentLanguage}");
     }
@@ -164,8 +181,19 @@ public class LanguageManager : MonoBehaviour {
         }
     }
 
-    public void OnSceneLoaded()
+    // Специальный метод для принудительного обновления текста даже при Time.timeScale == 0
+    public void ForceUpdateTexts()
     {
+        // Сохраняем оригинальное значение timeScale
+        float originalTimeScale = Time.timeScale;
+
+        // Временно устанавливаем timeScale в 1 для обновления текстов
+        Time.timeScale = 1;
+
+        // Вызываем обновление текстов
         UpdateAllTextsOnScene();
+
+        // Восстанавливаем оригинальное значение timeScale
+        Time.timeScale = originalTimeScale;
     }
 }

@@ -14,7 +14,6 @@ TagManager:
   - tRecords
   - tSettings
   - tHowToPlay
-  - ' tTapToPay'
   - tDroneWasShotDown
   - tBackToMenu
   - tMusicON
@@ -23,6 +22,10 @@ TagManager:
   - tSoundOFF
   - tBack
   - tPlayAgain
+  - RUButton
+  - UKButton
+  - CHButton
+  - tTapToPay
   layers:
   - Default
   - TransparentFX

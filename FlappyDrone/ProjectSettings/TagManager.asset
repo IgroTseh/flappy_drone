@@ -10,6 +10,18 @@ TagManager:
   - Record3
   - Record4
   - Record5
+  - tPlay
+  - tRecords
+  - tSettings
+  - tHowToPlay
+  - ' tTapToPay'
+  - tDroneWasShotDown
+  - tBackToMenu
+  - tMusicON
+  - tMusicOFF
+  - tSoundON
+  - tSoundOFF
+  - tBack
   layers:
   - Default
   - TransparentFX

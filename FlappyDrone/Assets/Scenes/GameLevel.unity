@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 377964484}
   m_Layer: 5
   m_Name: Text Drone Broken
-  m_TagString: Untagged
+  m_TagString: tDroneWasShotDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 449305583}
   m_Layer: 5
   m_Name: Text Play Again
-  m_TagString: Untagged
+  m_TagString: tBackToMenu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -894,7 +894,7 @@ GameObject:
   - component: {fileID: 775894776}
   m_Layer: 5
   m_Name: Text (Legacy)
-  m_TagString: Untagged
+  m_TagString: ' tTapToPay'
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1140,7 +1140,7 @@ GameObject:
   - component: {fileID: 824237214}
   m_Layer: 5
   m_Name: Records Button
-  m_TagString: Untagged
+  m_TagString: tRecords
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1365,7 +1365,7 @@ GameObject:
   - component: {fileID: 1060651191}
   m_Layer: 5
   m_Name: Text Play Again
-  m_TagString: Untagged
+  m_TagString: tPlayAgain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1605,7 +1605,7 @@ GameObject:
   - component: {fileID: 1201844928}
   m_Layer: 5
   m_Name: Records text
-  m_TagString: Untagged
+  m_TagString: tRecords
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1910,13 +1910,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Records
       objectReference: {fileID: 0}
+    - target: {fileID: 7428105614657108468, guid: f246741abb3515d49a3144f7cd8a9a88, type: 3}
+      propertyPath: m_TagString
+      value: tRecords
+      objectReference: {fileID: 0}
     - target: {fileID: 7684870292363634211, guid: f246741abb3515d49a3144f7cd8a9a88, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7684870292363634211, guid: f246741abb3515d49a3144f7cd8a9a88, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7684870292363634211, guid: f246741abb3515d49a3144f7cd8a9a88, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1925,18 +1929,26 @@ PrefabInstance:
     - target: {fileID: 7684870292363634211, guid: f246741abb3515d49a3144f7cd8a9a88, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1705295866}
     - target: {fileID: 7684870292363634211, guid: f246741abb3515d49a3144f7cd8a9a88, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: HideRecords
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 7684870292363634211, guid: f246741abb3515d49a3144f7cd8a9a88, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RecordsManager, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7684870292363634211, guid: f246741abb3515d49a3144f7cd8a9a88, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684870292363634211, guid: f246741abb3515d49a3144f7cd8a9a88, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757704755228925464, guid: f246741abb3515d49a3144f7cd8a9a88, type: 3}
+      propertyPath: m_TagString
+      value: tBack
       objectReference: {fileID: 0}
     - target: {fileID: 9172462788284080321, guid: f246741abb3515d49a3144f7cd8a9a88, type: 3}
       propertyPath: m_Pivot.x
@@ -2124,7 +2136,7 @@ GameObject:
   - component: {fileID: 1927291641}
   m_Layer: 5
   m_Name: Back to Menu Button
-  m_TagString: Untagged
+  m_TagString: tBack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

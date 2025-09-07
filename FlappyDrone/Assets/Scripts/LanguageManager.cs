@@ -19,7 +19,14 @@ public class LanguageManager : MonoBehaviour {
             Instance = this;
             DontDestroyOnLoad(gameObject);
             InitializeDictionaries();
-            UpdateAllTextsOnScene(); // Обновляем тексты при первой инициализации
+
+            // Загружаем сохраненный язык, если есть
+            if (PlayerPrefs.HasKey("CurrentLanguage"))
+            {
+                currentLanguage = (Language)PlayerPrefs.GetInt("CurrentLanguage");
+            }
+
+            UpdateAllTextsOnScene();
         }
         else
         {
@@ -43,7 +50,8 @@ public class LanguageManager : MonoBehaviour {
             new KeyValuePair<string, string>("tMusicOFF", "Музыка: ВЫКЛ"),
             new KeyValuePair<string, string>("tSoundON", "Звуки: ВКЛ"),
             new KeyValuePair<string, string>("tSoundOFF", "Звуки: ВЫКЛ"),
-            new KeyValuePair<string, string>("tBack", "Назад"), // НОВЫЙ ЭЛЕМЕНТ
+            new KeyValuePair<string, string>("tBack", "Назад"),
+            new KeyValuePair<string, string>("tPlayAgain", "Играть Снова"),
         };
         russianDict = ruTexts.ToDictionary(pair => pair.Key, pair => pair.Value);
 
@@ -61,7 +69,8 @@ public class LanguageManager : MonoBehaviour {
             new KeyValuePair<string, string>("tMusicOFF", "Music: OFF"),
             new KeyValuePair<string, string>("tSoundON", "Sound: ON"),
             new KeyValuePair<string, string>("tSoundOFF", "Sound: OFF"),
-            new KeyValuePair<string, string>("tBack", "Back"), // НОВЫЙ ЭЛЕМЕНТ
+            new KeyValuePair<string, string>("tBack", "Back"),
+            new KeyValuePair<string, string>("tPlayAgain", "Play Again"),
         };
         englishDict = enTexts.ToDictionary(pair => pair.Key, pair => pair.Value);
 
@@ -79,24 +88,27 @@ public class LanguageManager : MonoBehaviour {
             new KeyValuePair<string, string>("tMusicOFF", "音乐: 关"),
             new KeyValuePair<string, string>("tSoundON", "音效: 开"),
             new KeyValuePair<string, string>("tSoundOFF", "音效: 关"),
-            new KeyValuePair<string, string>("tBack", "返回"), // НОВЫЙ ЭЛЕМЕНТ
+            new KeyValuePair<string, string>("tBack", "返回"),
+            new KeyValuePair<string, string>("tPlayAgain", "再玩一次"),
         };
         chineseDict = zhTexts.ToDictionary(pair => pair.Key, pair => pair.Value);
     }
 
-    public void ChangeLang()
+    // Простая функция для переключения языка по кругу
+    public void SwitchLanguage()
     {
         int currentLangIndex = (int)currentLanguage;
         int nextLangIndex = (currentLangIndex + 1) % System.Enum.GetValues(typeof(Language)).Length;
         currentLanguage = (Language)nextLangIndex;
-        UpdateAllTextsOnScene();
-        Debug.Log($"Язык изменен на: {currentLanguage}");
-    }
 
-    public void SetLanguage(int langIndex)
-    {
-        currentLanguage = (Language)langIndex;
+        // Сохраняем выбор языка
+        PlayerPrefs.SetInt("CurrentLanguage", (int)currentLanguage);
+        PlayerPrefs.Save();
+
+        // Обновляем все тексты
         UpdateAllTextsOnScene();
+
+        Debug.Log($"Язык изменен на: {currentLanguage}");
     }
 
     public string GetText(string tag)

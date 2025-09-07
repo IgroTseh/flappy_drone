@@ -48,6 +48,7 @@ public class GameLogic : MonoBehaviour {
 
     public void GameOver()
     {
+        UpdateGameRecords(playerScore);
         gameOverScreen.SetActive(true);
         flapButton.SetActive(false);
         if (player != null)
@@ -73,5 +74,24 @@ public class GameLogic : MonoBehaviour {
             pauseButton.SetActive(true);
             flapButton.SetActive(false);
         }    
+    }
+
+    public void ToTheMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void UpdateGameRecords(int score)
+    {
+        RecordsManager records = FindObjectOfType<RecordsManager>();
+
+        if (records != null)
+        {
+            records.UpdateRecords(score);
+        }
+        else
+        {
+            Debug.LogWarning("Records object not found in scene!");
+        }
     }
 }

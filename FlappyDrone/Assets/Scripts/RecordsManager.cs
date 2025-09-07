@@ -5,10 +5,9 @@ using System.Linq;
 public class RecordsManager : MonoBehaviour {
     private static RecordsManager instance;
 
-    private int[] topScores = new int[10];
-    private bool showTop5 = true; // По умолчанию показываем 5 рекордов
+    private int[] topScores = new int[6]; // 6 рекордов
 
-    public Text[] recordTexts; // Массив текстовых элементов для отображения рекордов
+    private Text[] recordTexts = new Text[6]; // 6 текстовых элементов
 
     void Awake()
     {
@@ -18,11 +17,18 @@ public class RecordsManager : MonoBehaviour {
             instance = this;
             DontDestroyOnLoad(gameObject);
             InitializeRecords();
+            FindRecordTextsByTags();
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    void Update()
+    {
+        // Обновляем отображение рекордов каждый кадр
+        UpdateRecordsDisplay();
     }
 
     private void InitializeRecords()
@@ -31,6 +37,33 @@ public class RecordsManager : MonoBehaviour {
         for (int i = 0; i < topScores.Length; i++)
         {
             topScores[i] = 0;
+        }
+    }
+
+    private void FindRecordTextsByTags()
+    {
+        // Находим текстовые элементы по тегам Record0-Record5
+        for (int i = 0; i < 6; i++)
+        {
+            string tagName = "Record" + i;
+            GameObject textObject = GameObject.FindWithTag(tagName);
+
+            if (textObject != null)
+            {
+                recordTexts[i] = textObject.GetComponent<Text>();
+                if (recordTexts[i] != null)
+                {
+                    Debug.Log("Найден текстовый элемент с тегом: " + tagName);
+                }
+                else
+                {
+                    Debug.LogWarning("У объекта с тегом " + tagName + " нет компонента Text");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Не найден объект с тегом: " + tagName);
+            }
         }
     }
 
@@ -56,61 +89,45 @@ public class RecordsManager : MonoBehaviour {
                 break;
             }
         }
-
-        // Обновляем отображение после изменения рекордов
-        UpdateRecordsDisplay();
     }
 
-    public void UpdateRecordsDisplay()
+    private void UpdateRecordsDisplay()
     {
-        if (recordTexts == null || recordTexts.Length == 0)
+        // Если текстовые элементы не найдены, пытаемся найти их
+        if (recordTexts == null || recordTexts.Length == 0 || recordTexts[0] == null)
         {
-            Debug.LogWarning("Текстовые элементы для отображения рекордов не назначены!");
-            return;
+            FindRecordTextsByTags();
+
+            // Если после поиска все еще не найдены, выходим
+            if (recordTexts == null || recordTexts.Length == 0 || recordTexts[0] == null)
+            {
+                return;
+            }
         }
 
-        // Определяем сколько рекордов показывать
-        int recordsToShow = showTop5 ? 5 : 10;
-        int displayCount = Mathf.Min(recordsToShow, recordTexts.Length, topScores.Length);
+        // Отображаем все 6 рекордов
+        int displayCount = Mathf.Min(recordTexts.Length, topScores.Length);
 
         // Отображаем рекорды
         for (int i = 0; i < displayCount; i++)
         {
-            if (topScores[i] > 0)
+            if (recordTexts[i] != null)
             {
-                recordTexts[i].text = $"{i + 1}. {topScores[i]}";
+                if (topScores[i] > 0)
+                {
+                    recordTexts[i].text = $"{i + 1}. {topScores[i]}";
+                }
+                else
+                {
+                    recordTexts[i].text = $"{i + 1}. ---";
+                }
             }
-            else
-            {
-                recordTexts[i].text = $"{i + 1}. ---";
-            }
-        }
-
-        // Скрываем неиспользуемые текстовые элементы
-        for (int i = displayCount; i < recordTexts.Length; i++)
-        {
-            recordTexts[i].text = "";
         }
     }
 
-    public void ChangeRecordsShown()
-    {
-        // Переключаем режим отображения
-        showTop5 = !showTop5;
-        UpdateRecordsDisplay();
-
-        Debug.Log($"Режим отображения изменен: показывать {(showTop5 ? "5" : "10")} рекордов");
-    }
-
-    // Для получения текущих рекордов (например, для отображения в другом UI)
+    // Для получения текущих рекордов
     public int[] GetTopScores()
     {
-        return topScores.ToArray(); // Возвращаем копию массива
-    }
-
-    // Для получения текущего режима отображения
-    public bool IsShowingTop5()
-    {
-        return showTop5;
+        return topScores.ToArray();
     }
 }

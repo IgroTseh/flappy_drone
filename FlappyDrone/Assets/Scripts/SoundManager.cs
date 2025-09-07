@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class SoundManager : MonoBehaviour {
     public static SoundManager Instance;
 
-    public float musicVolume = 1f;
-    public float soundVolume = 1f;
+    // Изменяем значения по умолчанию на 0.5
+    public float musicVolume = 0.5f;
+    public float soundVolume = 0.5f;
     public bool musicMuted;
     public bool soundsMuted;
 
@@ -23,6 +23,7 @@ public class SoundManager : MonoBehaviour {
             // Создаем источник для музыки
             musicSource = gameObject.AddComponent<AudioSource>();
             musicSource.loop = true;
+            musicSource.volume = musicMuted ? 0 : musicVolume; // Устанавливаем громкость
         }
         else
         {
@@ -30,6 +31,7 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    // Остальной код без изменений...
     // Воспроизведение музыки
     public void PlayMusic(string clipName)
     {
@@ -47,13 +49,11 @@ public class SoundManager : MonoBehaviour {
         AudioClip clip = Resources.Load<AudioClip>("Sounds/" + clipName);
         if (clip == null) return;
 
-        // Создаем временный источник звука на этом же объекте
         AudioSource soundSource = gameObject.AddComponent<AudioSource>();
         soundSource.clip = clip;
         soundSource.volume = soundsMuted ? 0 : soundVolume;
         soundSource.Play();
 
-        // Удаляем источник после проигрывания звука
         Destroy(soundSource, clip.length);
     }
 

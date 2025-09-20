@@ -73,3 +73,9 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+
+# Игнорировать билды для WebGL
+[Bb]uild/
+[Bb]uilds/
+WebGL_Build/ # Или то название, которое вы дали своей папке с билдом

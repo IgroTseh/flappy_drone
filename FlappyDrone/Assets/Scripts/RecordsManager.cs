@@ -123,11 +123,35 @@ public class RecordsManager : MonoBehaviour {
                 }
             }
         }
+
+        // Скрываем неиспользуемые текстовые элементы (если их больше 6)
+        for (int i = displayCount; i < recordTexts.Length; i++)
+        {
+            if (recordTexts[i] != null)
+            {
+                recordTexts[i].text = "";
+            }
+        }
     }
 
     // Для получения текущих рекордов
     public int[] GetTopScores()
     {
         return topScores.ToArray();
+    }
+
+    // Для установки рекордов (для SaveManager)
+    public void SetTopScores(int[] scores)
+    {
+        if (scores.Length != topScores.Length)
+        {
+            Debug.LogError("Invalid scores array length");
+            return;
+        }
+
+        for (int i = 0; i < topScores.Length; i++)
+        {
+            topScores[i] = scores[i];
+        }
     }
 }

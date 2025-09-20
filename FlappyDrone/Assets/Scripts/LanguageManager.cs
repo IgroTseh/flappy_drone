@@ -21,10 +21,10 @@ public class LanguageManager : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
             InitializeDictionaries();
 
-            // Загружаем сохраненный язык
-            if (PlayerPrefs.HasKey("CurrentLanguage"))
+            // Загружаем сохраненный язык через SaveManager
+            if (SaveManager.Instance != null)
             {
-                currentLanguage = (Language)PlayerPrefs.GetInt("CurrentLanguage");
+                SaveManager.Instance.LoadLanguage();
             }
 
             // Подписываемся на событие загрузки сцены
@@ -118,9 +118,11 @@ public class LanguageManager : MonoBehaviour {
         int nextLangIndex = (currentLangIndex + 1) % System.Enum.GetValues(typeof(Language)).Length;
         currentLanguage = (Language)nextLangIndex;
 
-        // Сохраняем выбор языка
-        PlayerPrefs.SetInt("CurrentLanguage", (int)currentLanguage);
-        PlayerPrefs.Save();
+        // Сохраняем выбор языка через SaveManager
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.SaveLanguage();
+        }
 
         // Используем ForceUpdateTexts вместо UpdateAllTextsOnScene
         ForceUpdateTexts();

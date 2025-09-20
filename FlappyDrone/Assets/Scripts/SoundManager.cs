@@ -24,6 +24,12 @@ public class SoundManager : MonoBehaviour {
             musicSource = gameObject.AddComponent<AudioSource>();
             musicSource.loop = true;
             musicSource.volume = musicMuted ? 0 : musicVolume; // Устанавливаем громкость
+
+            // Загружаем сохраненные настройки
+            if (SaveManager.Instance != null)
+            {
+                SaveManager.Instance.LoadSound();
+            }
         }
         else
         {
@@ -31,7 +37,6 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
-    // Остальной код без изменений...
     // Воспроизведение музыки
     public void PlayMusic(string clipName)
     {
@@ -62,22 +67,46 @@ public class SoundManager : MonoBehaviour {
     {
         musicVolume = volume;
         musicSource.volume = musicMuted ? 0 : musicVolume;
+
+        // Сохраняем настройки
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.SaveSound();
+        }
     }
 
     public void SetSoundVolume(float volume)
     {
         soundVolume = volume;
+
+        // Сохраняем настройки
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.SaveSound();
+        }
     }
 
     public void ToggleMusicMute()
     {
         musicMuted = !musicMuted;
         musicSource.volume = musicMuted ? 0 : musicVolume;
+
+        // Сохраняем настройки
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.SaveSound();
+        }
     }
 
     public void ToggleSoundsMute()
     {
         soundsMuted = !soundsMuted;
+
+        // Сохраняем настройки
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.SaveSound();
+        }
     }
 
     // Остановка музыки

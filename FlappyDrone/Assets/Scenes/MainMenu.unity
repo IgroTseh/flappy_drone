@@ -3791,6 +3791,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Records
       objectReference: {fileID: 0}
+    - target: {fileID: 5727947522049866933, guid: f246741abb3515d49a3144f7cd8a9a88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6301942531420453694, guid: f246741abb3515d49a3144f7cd8a9a88, type: 3}
       propertyPath: m_Color.b
       value: 1

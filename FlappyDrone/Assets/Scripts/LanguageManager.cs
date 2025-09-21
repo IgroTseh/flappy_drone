@@ -5,13 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class LanguageManager : MonoBehaviour {
-    public enum Language { Russian, English, Chinese }
+    public enum Language { Russian, English }
     public static LanguageManager Instance;
     public Language currentLanguage = Language.Russian;
 
     private Dictionary<string, string> russianDict;
     private Dictionary<string, string> englishDict;
-    private Dictionary<string, string> chineseDict;
 
     void Awake()
     {
@@ -91,25 +90,6 @@ public class LanguageManager : MonoBehaviour {
             new KeyValuePair<string, string>("tPlayAgain", "Play Again"),
         };
         englishDict = enTexts.ToDictionary(pair => pair.Key, pair => pair.Value);
-
-        // Китайский язык
-        var zhTexts = new KeyValuePair<string, string>[]
-        {
-            new KeyValuePair<string, string>("tPlay", "玩"),
-            new KeyValuePair<string, string>("tRecords", "记录"),
-            new KeyValuePair<string, string>("tSettings", "设置"),
-            new KeyValuePair<string, string>("tHowToPlay", "游戏规则"),
-            new KeyValuePair<string, string>("tTapToPay", "点击开始"),
-            new KeyValuePair<string, string>("tDroneWasShotDown", "无人机被击落"),
-            new KeyValuePair<string, string>("tBackToMenu", "返回菜单"),
-            new KeyValuePair<string, string>("tMusicON", "音乐: 开"),
-            new KeyValuePair<string, string>("tMusicOFF", "音乐: 关"),
-            new KeyValuePair<string, string>("tSoundON", "音效: 开"),
-            new KeyValuePair<string, string>("tSoundOFF", "音效: 关"),
-            new KeyValuePair<string, string>("tBack", "返回"),
-            new KeyValuePair<string, string>("tPlayAgain", "再玩一次"),
-        };
-        chineseDict = zhTexts.ToDictionary(pair => pair.Key, pair => pair.Value);
     }
 
     public void SwitchLanguage()
@@ -142,9 +122,6 @@ public class LanguageManager : MonoBehaviour {
                 break;
             case Language.English:
                 found = englishDict.TryGetValue(tag, out result);
-                break;
-            case Language.Chinese:
-                found = chineseDict.TryGetValue(tag, out result);
                 break;
         }
 

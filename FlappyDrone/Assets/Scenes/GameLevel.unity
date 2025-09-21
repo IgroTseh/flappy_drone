@@ -1558,7 +1558,7 @@ MonoBehaviour:
   spawnRate: 3
   enemySpawnY: -4
   enemySpawnXoffset: 1.5
-  spwnProbability: 0.3
+  spwnProbability: 0.5
   timer: 2
 --- !u!4 &1606246151
 Transform:

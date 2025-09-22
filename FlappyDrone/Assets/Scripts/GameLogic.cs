@@ -48,6 +48,7 @@ public class GameLogic : MonoBehaviour {
 
     public void GameOver()
     {
+        PlaySoundEffect("gamover");
         UpdateGameRecords(playerScore);
         gameOverScreen.SetActive(true);
         flapButton.SetActive(false);
@@ -92,6 +93,18 @@ public class GameLogic : MonoBehaviour {
         else
         {
             Debug.LogWarning("Records object not found in scene!");
+        }
+    }
+
+    public void PlaySoundEffect(string soundName)
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound(soundName);
+        }
+        else
+        {
+            Debug.LogWarning("SoundManager не найден. Ќе удалось воспроизвести звук: " + soundName);
         }
     }
 }

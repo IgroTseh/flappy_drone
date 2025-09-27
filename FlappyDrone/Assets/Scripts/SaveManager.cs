@@ -9,7 +9,6 @@ public class SaveManager : MonoBehaviour {
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            LoadAll();
         }
         else
         {
@@ -17,16 +16,19 @@ public class SaveManager : MonoBehaviour {
         }
     }
 
-    // Сохранение всех данных
+    private void Start()
+    {
+        LoadAll();
+    }
+
     public void SaveAll()
     {
         SaveRecords();
         SaveSound();
         SaveLanguage();
-        PlayerPrefs.Save(); // Важно для WebGL
+        PlayerPrefs.Save();
     }
 
-    // Загрузка всех данных
     public void LoadAll()
     {
         LoadRecords();
@@ -37,7 +39,6 @@ public class SaveManager : MonoBehaviour {
     #region Records Manager
     public void SaveRecords()
     {
-        // Ищем объект RecordsManager в сцене
         RecordsManager recordsManager = FindObjectOfType<RecordsManager>();
         if (recordsManager == null) return;
 
@@ -58,8 +59,6 @@ public class SaveManager : MonoBehaviour {
         {
             topScores[i] = PlayerPrefs.GetInt($"Record_{i}", 0);
         }
-
-        // Устанавливаем загруженные рекорды
         recordsManager.SetTopScores(topScores);
     }
     #endregion
@@ -84,7 +83,6 @@ public class SaveManager : MonoBehaviour {
         SoundManager.Instance.musicMuted = PlayerPrefs.GetInt("MusicMuted", 0) == 1;
         SoundManager.Instance.soundsMuted = PlayerPrefs.GetInt("SoundsMuted", 0) == 1;
 
-        // Обновляем состояние аудио
         SoundManager.Instance.SetMusicVolume(SoundManager.Instance.musicVolume);
     }
     #endregion
@@ -102,19 +100,18 @@ public class SaveManager : MonoBehaviour {
 
         if (PlayerPrefs.HasKey("CurrentLanguage"))
         {
-            LanguageManager.Instance.currentLanguage = (LanguageManager.Language)PlayerPrefs.GetInt("CurrentLanguage");
+            LanguageManager.Instance.currentLanguage =
+                (LanguageManager.Language)PlayerPrefs.GetInt("CurrentLanguage");
             LanguageManager.Instance.ForceUpdateTexts();
         }
     }
     #endregion
 
-    // Вызывается при выходе из игры
     private void OnApplicationQuit()
     {
         SaveAll();
     }
 
-    // Для WebGL: сохраняем при изменении состояния страницы
     private void OnApplicationPause(bool pauseStatus)
     {
         if (pauseStatus) SaveAll();

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2592638007421727510}
   m_Layer: 5
   m_Name: Text (Legacy)
-  m_TagString: Untagged
+  m_TagString: tBack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 7684870292363634211}
   m_Layer: 5
   m_Name: Back
-  m_TagString: Untagged
+  m_TagString: tBack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

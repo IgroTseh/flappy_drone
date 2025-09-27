@@ -26,6 +26,7 @@ TagManager:
   - UKButton
   - CHButton
   - tTapToPay
+  - tQuit
   layers:
   - Default
   - TransparentFX
